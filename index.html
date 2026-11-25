@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sabiha Watch Security</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <button id="back" class="icon" aria-label="Home" hidden>&#8592;</button>
+  <h1 id="title">Sabiha Security</h1>
+  <button id="mic" class="icon" aria-label="Talk to Sabiha">&#127908;</button>
+</header>
+<p id="heard" aria-live="polite"></p>
+<figure id="sabiha" class="avatar" hidden>
+  <button id="face" aria-label="Say hello to Sabiha"><img src="sabiha.jpg" alt="Sabiha, the AI security assistant"></button>
+  <figcaption id="avCap">Tap Sabiha to say hello</figcaption>
+</figure>
+
+<main>
+  <section id="home" class="view"><div class="grid" id="grid"></div></section>
+
+  <section id="dashboard" class="view" hidden>
+    <div class="ring" id="ring" role="img" aria-label="Server status"><span id="statusText">Checking</span><small id="statusSub">Connecting…</small></div>
+    <div class="stats">
+      <div><b id="cpu">--</b><span>CPU %</span></div>
+      <div><b id="ram">--</b><span>RAM %</span></div>
+      <div><b id="fails">--</b><span>Failed logins</span></div>
+    </div>
+    <div class="actions">
+      <button data-action="status">Refresh</button>
+      <button data-action="block_ip">Block IP</button>
+      <button data-action="restart_service">Restart service</button>
+      <button data-action="lockdown" class="danger">Lock down</button>
+    </div>
+  </section>
+
+  <section id="assistant" class="view" hidden>
+    <div id="chat" class="chat" aria-live="polite"></div>
+    <form id="chatForm" class="ask"><input id="q" placeholder="Please ask your question…" autocomplete="off"><button class="send" aria-label="Send">&#10148;</button></form>
+  </section>
+
+  <section id="bluetooth" class="view" hidden>
+    <canvas id="radar" width="320" height="320" aria-label="Security radar"></canvas>
+    <button id="scanBt" class="wide">Scan nearby Bluetooth devices</button>
+    <p id="btNote" class="note"></p>
+    <ul id="btList" class="list"></ul>
+  </section>
+
+  <section id="wifi" class="view" hidden><ul id="wifiList" class="list"></ul><button id="wifiRefresh" class="wide">Refresh</button></section>
+  <section id="network" class="view" hidden><ul id="netList" class="list"></ul><button id="netRefresh" class="wide">Run checks</button></section>
+  <section id="vuln" class="view" hidden><div class="glass score"><b id="score">0%</b><span>hardening score</span></div><ul id="vulnList" class="list"></ul></section>
+  <section id="device" class="view" hidden><ul id="devList" class="list"></ul><button id="devRefresh" class="wide">Refresh</button></section>
+  <section id="watchface" class="view" hidden>
+    <canvas id="faceCv" width="454" height="454" aria-label="Sabiha watch face preview"></canvas>
+    <button id="saveFace" class="wide">Download face image (PNG)</button>
+    <p class="note">Tap Sabiha to talk. Time, date and security status are live. Battery is this phone's. Heart and steps are sample values, because a browser can't read your watch sensors.</p>
+  </section>
+  <section id="reports" class="view" hidden><ul id="log" class="list" aria-live="polite"></ul><button id="exportRep" class="wide">Download report</button></section>
+
+  <section id="settings" class="view" hidden>
+    <label>Server API URL <input id="apiUrl" placeholder="https://your-server.com/api"></label>
+    <label>Access token <input id="token" type="password" placeholder="Your secret token"></label>
+    <label>Your name <input id="uname" placeholder="Saifan"></label>
+    <label>Sabiha look
+      <select id="look"><option value="blue">Blue guardian</option><option value="cyber">Cyber warrior</option></select></label>
+    <label>Voice language
+      <select id="lang"><option value="en-US">English</option><option value="bn-BD">বাংলা</option></select></label>
+    <label class="check"><input id="demo" type="checkbox"> Demo mode (no real server)</label>
+    <button id="save" class="wide">Save settings</button>
+  </section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
